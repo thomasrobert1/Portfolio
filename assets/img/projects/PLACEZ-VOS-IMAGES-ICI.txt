@@ -1,0 +1,17 @@
+﻿PLACEZ VOS IMAGES DE PROJETS ICI
+================================
+
+Les images referencees dans js/projects-data.js sont attendues dans ce dossier,
+par exemple :
+
+  assets/img/projects/gearbox-cover.jpg
+  assets/img/projects/cnc-frame.jpg
+  ...
+
+Tant qu'un fichier est absent, la page de projet affiche un cadre en pointilles
+avec le chemin attendu : rien ne casse, tu peux remplir plus tard.
+
+Conseils :
+- format paysage (16:9 ou 3:2), largeur 1600 px maximum
+- JPG pour les photos, PNG pour les captures d'ecran / graphiques
+- vise moins de 400 Ko par image pour garder le site rapide

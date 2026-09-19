@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="meta.title">Thomas ROBERT — MechanicalEngineering Student, Arts et Métiers</title>
+  <meta name="description" data-i18n-attrs="content:meta.description" content="Portfolio of Thomas ROBERT, second-year engineering student at Arts et Métiers (ENSAM).">
+
+  <!-- Évite le clignotement anglais → français au chargement (voir js/i18n.js) -->
+  <script>
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search).get('lang');
+        var l = q || localStorage.getItem('portfolio-lang');
+        if (l && l !== 'en') {
+          document.documentElement.setAttribute('lang', l);
+          document.documentElement.setAttribute('data-lang-loading', '');
+        }
+      } catch (e) { /* localStorage indisponible : on reste en anglais */ }
+    })();
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <!-- Fonts : Questrial (titres et sous-titres) / Hind Guntur (texte courant, dates, tags) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Hind+Guntur:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Curseur personnalisé (désactivé automatiquement sur tactile / reduced-motion) -->
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+  <canvas id="trail-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <header class="nav" id="nav">
+    <a href="#home" class="nav-logo">TR<span>.</span></a>
+
+    <nav class="nav-links" id="nav-links">
+      <a href="#home" data-nav data-i18n="nav.home">Home</a>
+      <a href="#commitments" data-nav data-i18n="nav.commitments">My Commitments</a>
+      <a href="#journey" data-nav data-i18n="nav.journey">Academic &amp; Professional Path</a>
+      <a href="#projects" data-nav data-i18n="nav.projects">Projects</a>
+      <a href="#contact" data-nav data-i18n="nav.contact">Contact</a>
+      <!-- Sélecteur de langue (drapeaux) — dupliqué dans le menu mobile -->
+      <div class="lang-switch lang-switch-mobile" data-lang-switch></div>
+    </nav>
+
+    <div class="nav-right">
+      <div class="lang-switch lang-switch-desktop" data-lang-switch></div>
+      <button class="nav-toggle" id="nav-toggle"
+              data-i18n-attrs="aria-label:nav.menuOpen"
+              aria-label="Open the menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="home">
+    <canvas id="stars-canvas" aria-hidden="true"></canvas>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="hero.eyebrow">Mechanical Engineering student — Arts et Métiers</span></p>
+      <h1 class="hero-title">
+        Thomas<br>
+        <span class="outline">ROBERT</span>
+      </h1>
+      <p class="hero-text" data-i18n="hero.text">
+        <!-- ✏️ À PERSONNALISER : ta présentation en 2-3 phrases (et sa traduction dans js/i18n.js) -->
+        Second year student at Arts et Métiers Institute of Technology (ENSAM) and passionate about mechanical engineering, aerospace and space exploration. I am looking for new opportunities in the field of projects related toaerospace.
+      </p>
+
+      <div class="hero-actions">
+        <a href="assets/cv/CV.pdf" class="btn btn-primary" download>
+          <span data-i18n="hero.cv">Download my CV</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v9M3.5 7 7 10.5 10.5 7M2 13h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#projects" class="btn btn-ghost" data-nav data-i18n="hero.seeProjects">View my projects</a>
+      </div>
+
+      <ul class="hero-meta">
+        <li><span data-i18n="hero.metaLocation">Location</span><span data-i18n="hero.metaLocationValue">Paris, France</span></li>
+        <li><span data-i18n="hero.metaStatus">Status</span><span data-i18n="hero.metaStatusValue">Open to work</span></li>
+        <li><span data-i18n="hero.metaContact">Contact</span><a href="mailto:thomas.robert@gmail.com">trobert.compain@gmail.com</a></li>
+      </ul>
+    </div>
+
+    <a href="#commitments" class="scroll-cue" data-nav
+       data-i18n-attrs="aria-label:hero.scrollAria" aria-label="Scroll to my commitments">
+      <span class="scroll-cue-line"></span>
+      <span class="scroll-cue-label" data-i18n="hero.scroll">Scroll</span>
+    </a>
+  </section>
+
+  <!-- ===================== COMMITMENTS ===================== -->
+  <section class="commitments-section" id="commitments">
+    <div class="section-head reveal">
+      <p class="eyebrow eyebrow-dark" data-i18n="commitments.eyebrow">Leadership</p>
+      <h2 class="section-title section-title-dark" data-i18n="commitments.title">My commitments</h2>
+    </div>
+
+    <div class="commitments-columns">
+      <article class="commitment-col reveal">
+        <p class="commitment-date" data-i18n="c1.date">June 2026 — June 2027</p>
+        <h3 class="commitment-role" data-i18n="c1.title">Quality, Performance &amp; Audit Manager</h3>
+        <p class="commitment-org" data-i18n="c1.place">AMJE, Junior-Enterprise of Arts et Métiers</p>
+        <ul class="commitment-desc" data-i18n="c1.desc">
+          <li>In charge of quality processes, performance monitoring and internal audit for the junior-enterprise's missions and operations.</li>
+          <li>Provided self-formation tools for 50 Business Managers.</li>
+          <li>Helped to develop an internal dans self-built ERP to improve the efficiency and the independence of the organization.</li>
+          <li>Verified and corrected more than 300 documents and reports, and audited 10 missions to ensure the quality of the deliverables.</li>
+          <li>Developed an IA tool to detect errors and non-compliance in anonymized documents.</li>
+          <li>Managed a team of 6 people in charge of quality and performance and co-managed 50 Business Managers with the Commercial Director.</li>
+          <li>In charge of the preparation of the Audit conducted by CNJE Auditors in December 2026 and June 2027.</li>
+        </ul>
+        <ul class="commitment-tags">
+          <li data-i18n="c1.t1">Quality</li><li data-i18n="c1.t2">Audit</li><li data-i18n="c1.t3">Performance</li>
+        </ul>
+      </article>
+
+      <article class="commitment-col reveal">
+        <p class="commitment-date" data-i18n="c2.date">Aug. 2026 — Aug. 2027</p>
+        <h3 class="commitment-role" data-i18n="c2.title">Vice President</h3>
+        <p class="commitment-org" data-i18n="c2.place">AM Space, Aerospace association of Arts et Métiers</p>
+        <ul class="commitment-desc" data-i18n="c2.desc">
+          <li>Co-leading the association's strategy and aerospace projects, coordinating teams and partnerships.</li>
+          <li>Launched a new project to design a full propulsion system for CubeSats satellites, including an ECR heater and a Helicon propulsion system.</li>
+          <li>Helped to organize events related to aerospace and space exploration, including conferences and workshops.</li>
+          <li>Helped the president to prepare our first participation to EPS 2027 conference in Lausanne, Switzerland.</li>
+          <li>Started the design and fabrication of a 127 mm DIY telescope for planetary observation and astrophotography.</li>
+        </ul>
+        <ul class="commitment-tags">
+          <li data-i18n="c2.t1">Leadership</li><li data-i18n="c2.t2">Aerospace</li><li data-i18n="c2.t3">Project management</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== JOURNEY (TIMELINE) ===================== -->
+  <section class="timeline-section" id="journey">
+    <canvas id="stars-canvas-2" aria-hidden="true"></canvas>
+
+    <div class="section-head reveal">
+      <p class="eyebrow eyebrow-alt" data-i18n="journey.eyebrow">Trajectory</p>
+      <h2 class="section-title" data-i18n="journey.title">Academic &amp; professional path</h2>
+      <p class="section-sub" data-i18n="journey.sub">From high school to Arts et Métiers</p>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-track" aria-hidden="true">
+        <div class="timeline-track-fill" id="timeline-fill"></div>
+      </div>
+
+      <!-- ✏️ À PERSONNALISER : ajoute / retire des étapes, garde l'ordre du plus récent (haut)
+           au plus ancien (bas). Chaque texte a une clé data-i18n : sa traduction française
+           se trouve dans js/i18n.js (clés j1.*, j2.*, …). -->
+
+      <article class="timeline-item reveal">
+        <div class="timeline-node"><span></span></div>
+        <div class="timeline-card">
+          <p class="timeline-date" data-i18n="j1.date">Sept. 2026 — Present</p>
+          <h3 data-i18n="j1.title">2nd year — General engineering track</h3>
+          <p class="timeline-place" data-i18n="j1.place">Arts et Métiers (ENSAM), Paris</p>
+          <p class="timeline-desc" data-i18n="j1.desc">
+            Programme Grande École in top 10th french engineering schools, with progressive specialisation in mechanics and
+            complex systems. Design, analysis and manufacturing projects.
+          </p>
+          <ul class="timeline-tags">
+            <li data-i18n="j1.t1">Mechanics</li><li data-i18n="j1.t2">Structural analysis</li><li data-i18n="j1.t3">CAD</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal">
+        <div class="timeline-node"><span></span></div>
+        <div class="timeline-card">
+          <p class="timeline-date" data-i18n="j1b.date">Aug. 2026 — Aug. 2027</p>
+          <h3 data-i18n="j1b.title">Vice President</h3>
+          <p class="timeline-place" data-i18n="j1b.place">AM Space, Aerospace association of Arts et Métiers</p>
+          <p class="timeline-desc" data-i18n="j1b.desc">
+            Co-leading the association's strategy and aerospace projects, coordinating teams and partnerships.
+          </p>
+          <ul class="timeline-tags">
+            <li data-i18n="j1b.t1">Leadership</li><li data-i18n="j1b.t2">Aerospace</li><li data-i18n="j1b.t3">Project management</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal">
+        <div class="timeline-node"><span></span></div>
+        <div class="timeline-card">
+          <p class="timeline-date" data-i18n="j1c.date">July 2026</p>
+          <h3 data-i18n="j1c.title">Internship</h3>
+          <p class="timeline-place" data-i18n="j1c.place">Laboratoire d'Astrophysique de Marseille (LAM)</p>
+          <p class="timeline-desc" data-i18n="j1c.desc">
+            Research internship at the astrophysics laboratory of Marseille.
+          </p>
+          <ul class="timeline-tags">
+            <li data-i18n="j1c.t1">Astrophysics</li><li data-i18n="j1c.t2">Research</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal">
+        <div class="timeline-node"><span></span></div>
+        <div class="timeline-card">
+          <p class="timeline-date" data-i18n="j1a.date">June 2026 — June 2027</p>
+          <h3 data-i18n="j1a.title">Quality, Performance &amp; Audit Manager</h3>
+          <p class="timeline-place" data-i18n="j1a.place">AMJE, Junior-Enterprise of Arts et Métiers</p>
+          <p class="timeline-desc" data-i18n="j1a.desc">
+            In charge of quality processes, performance monitoring and internal audit for the junior-enterprise's missions and operations.
+          </p>
+          <ul class="timeline-tags">
+            <li data-i18n="j1a.t1">Quality</li><li data-i18n="j1a.t2">Audit</li><li data-i18n="j1a.t3">Performance</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal">
+        <div class="timeline-node"><span></span></div>
+        <div class="timeline-card">
+          <p class="timeline-date" data-i18n="j2.date">Sept.2025 — June 2026</p>
+          <h3 data-i18n="j2.title">1st year — General engineering track</h3>
+          <p class="timeline-place" data-i18n="j2.place">Arts et Métiers (ENSAM), Châlons-en-Champagne</p>
+          <p class="timeline-desc" data-i18n="j2.desc">
+            Scientific and technical fundamentals: solid and fluid mechanics,
+            materials, industrial processes, project management.
+          </p>
+          <ul class="timeline-tags">
+            <li data-i18n="j2.t1">Fluid mechanics</li><li data-i18n="j2.t2">Materials</li><li data-i18n="j2.t3">Project work</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal">
+        <div class="timeline-node"><span></span></div>
+        <div class="timeline-card">
+          <p class="timeline-date" data-i18n="j3.date">Sept. 2023 — June 2025</p>
+          <h3 data-i18n="j3.title">Preparatory classes MPSI / PSI</h3>
+          <p class="timeline-place" data-i18n="j3.place">Lycée Aux Lazaristes, Lyon</p>
+          <p class="timeline-desc" data-i18n="j3.desc">
+            Intensive training in mathematics, physics and engineering science in the top 5 of french preparatory classes.
+            Admitted to Arts et Métiers through the national competitive CentraleSupélec Entrance Exam (PSI) — Ranked in the top 25% among 3,684 candidates.
+          </p>
+          <ul class="timeline-tags">
+            <li data-i18n="j3.t1">Mathematics</li><li data-i18n="j3.t2">Physics</li><li data-i18n="j3.t3">Engineering science</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal">
+        <div class="timeline-node"><span></span></div>
+        <div class="timeline-card">
+          <p class="timeline-date" data-i18n="j4.date">Sept.2021 — June 2023</p>
+          <h3 data-i18n="j4.title">French Baccalauréat</h3>
+          <p class="timeline-place" data-i18n="j4.place">Lycée Saint Éloi, Aix-en-Provence</p>
+          <p class="timeline-desc" data-i18n="j4.desc">
+            Majors in Mathematics, Physics-Chemistry and engineering sciences. Graduated with honours and distinction.
+          </p>
+          <ul class="timeline-tags">
+            <li data-i18n="j4.t1">Honours</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section class="projects-section" id="projects">
+    <div class="section-head reveal">
+      <p class="eyebrow eyebrow-dark" data-i18n="projects.eyebrow">Missions</p>
+      <h2 class="section-title section-title-dark" data-i18n="projects.title">Projects</h2>
+    </div>
+
+    <!-- Filtres et cartes sont générés depuis js/projects-data.js -->
+    <div class="filters reveal" id="project-filters" role="tablist"
+         data-i18n-attrs="aria-label:projects.filterAria" aria-label="Filter projects"></div>
+
+    <div class="projects-grid" id="projects-grid"></div>
+  </section>
+
+  <!-- ===================== CONTACT / FOOTER ===================== -->
+  <section class="contact-section" id="contact">
+    <canvas id="stars-canvas-3" aria-hidden="true"></canvas>
+
+    <div class="contact-content reveal">
+      <p class="eyebrow eyebrow-alt" data-i18n="contact.eyebrow">Contact</p>
+      <h2 class="contact-title" data-i18n="contact.title">Get in touch</h2>
+
+      <div class="contact-links">
+        <a href="mailto:thomas.robert@ensam.eu" class="contact-link">
+          <span data-i18n="contact.email">E-mail</span>trobert.compain@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/votre-profil/" class="contact-link" target="_blank" rel="noopener">
+          <span>LinkedIn</span>linkedin.com/in/votre-profil
+        </a>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Thomas ROBERT <span data-i18n="footer.text">— Engineering student, Arts et Métiers</span></p>
+      <a href="#home" data-nav class="footer-top" data-i18n="footer.top">Back to top ↑</a>
+    </footer>
+  </section>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/projects-data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

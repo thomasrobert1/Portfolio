@@ -1,0 +1,13 @@
+﻿PLACEZ VOS VIDEOS ICI
+=====================
+
+Les videos referencees dans js/projects-data.js (blocs { type: 'video' })
+sont attendues dans ce dossier, par exemple :
+
+  assets/video/gearbox-run.mp4
+
+Format conseille : MP4 (H.264 + AAC), moins de 10 Mo, avec une image "poster"
+dans assets/img/projects/ pour l'affichage avant lecture.
+
+Pour une video deja en ligne sur YouTube, utilise plutot un bloc :
+  { type: 'embed', provider: 'youtube', id: 'IDENTIFIANT_YOUTUBE', caption: {...} }

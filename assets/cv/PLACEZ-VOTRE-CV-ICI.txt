@@ -1,0 +1,6 @@
+Dépose ici ton CV au format PDF, nommé exactement : CV.pdf
+
+Chemin attendu par le site : assets/cv/CV.pdf
+(référencé dans index.html, bouton "Télécharger mon CV")
+
+Une fois le fichier ajouté, tu peux supprimer ce .txt.
